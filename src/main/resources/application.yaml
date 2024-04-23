@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active:
+      - local
+    include:
+      - db
+    group:
+      local:
+        - db-local
+      dev:
+        - db-dev
+      prod:
+        - db-prod
+
