@@ -1,5 +1,6 @@
 package com.myolang.thecommerce_toy.infra.postgresql.member.entity;
 
+import com.myolang.thecommerce_toy.infra.postgresql.util.BaseEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,13 +11,11 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @Getter
-public class MemberEntity {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+@Table(name = "member")
+public class MemberEntity extends BaseEntity {
 
   @Setter
+  @Id
   @Column(nullable = false, unique = true)
   private String memberId;
 

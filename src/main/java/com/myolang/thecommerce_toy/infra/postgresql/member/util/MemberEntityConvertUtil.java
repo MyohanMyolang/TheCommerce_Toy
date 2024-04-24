@@ -17,13 +17,13 @@ public class MemberEntityConvertUtil {
 
   protected Member toMember(MemberEntity memberEntity){
     return Member.builder()
-      .id(memberEntity.getId())
       .memberId(memberEntity.getMemberId())
       .name(memberEntity.getName())
       .email(memberEntity.getEmail())
       .phoneNumber(memberEntity.getPhoneNumber())
       .password(memberEntity.getPassword())
       .nickname(memberEntity.getNickname())
+      .createdAt(memberEntity.getCreatedAt())
       .build();
   }
 }
