@@ -2,6 +2,7 @@ package com.myolang.thecommerce_toy.global.exception;
 
 import com.myolang.thecommerce_toy.global.exception.dto.ErrorResponse;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * NOTE : 이 클래스의 정의 이유와 사용 방법.
@@ -13,10 +14,11 @@ import lombok.AllArgsConstructor;
  * DetailMessage가 될 수도 있고, 객체의 상태가 될 수도 있고, 에러가 난 propery에 대한 상세 내용이 될 수도 있다.
  */
 @AllArgsConstructor
+@Getter
 public abstract class CustomException extends RuntimeException {
-  public String message;
-  public ErrorCode errorCode;
-  public Object payload;
+  private String message;
+  private ErrorCode errorCode;
+  private Object payload;
 
 
   /**
