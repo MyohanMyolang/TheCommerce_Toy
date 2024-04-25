@@ -2,9 +2,10 @@ package com.myolang.thecommerce_toy.infra.postgresql.member.util;
 
 import com.myolang.thecommerce_toy.domain.member.model.Member;
 import com.myolang.thecommerce_toy.infra.postgresql.member.entity.MemberEntity;
+import com.myolang.thecommerce_toy.infra.querydsl.EntityUtil;
 
-public class MemberEntityConvertUtil {
-  protected MemberEntity toMemberEntity(Member member){
+public class MemberEntityUtil extends EntityUtil<MemberEntity, Member> {
+  protected MemberEntity modelToEntity(Member member) {
     return MemberEntity.builder()
       .memberId(member.getMemberId())
       .name(member.getName())
@@ -15,7 +16,7 @@ public class MemberEntityConvertUtil {
       .build();
   }
 
-  protected Member toMember(MemberEntity memberEntity){
+  protected Member entityToModel(MemberEntity memberEntity) {
     return Member.builder()
       .memberId(memberEntity.getMemberId())
       .name(memberEntity.getName())

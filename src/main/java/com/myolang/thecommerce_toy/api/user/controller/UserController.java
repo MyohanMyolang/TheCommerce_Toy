@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.LinkedList;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,12 +18,13 @@ public class UserController {
   private final UserService userService;
 
   @GetMapping("/list")
-  public MembersPagingResponse getMembers(
+  public ResponseEntity<MembersPagingResponse> getMembers(
     @RequestParam Long page,
     @RequestParam Long pageSize,
     @RequestParam MemberSortType sortType
   ) {
-    return new MembersPagingResponse(new LinkedList<>(), 1L);
+    MembersPagingResponse response = userService.getMembers(page, pageSize, sortType);
+    return ResponseEntity.status(HttpStatus.OK).body(response);
   }
 
   @PatchMapping("/{loginId}")
