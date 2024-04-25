@@ -25,7 +25,6 @@ public class PostgresqlMemberRepository extends MemberEntityUtil implements IMem
   public Member saveMember(Member member) {
     MemberEntity memberEntity = modelToEntity(member);
     jpaMemberRepository.save(memberEntity);
-    return toMember(memberEntity);
     return entityToModel(memberEntity);
   }
 

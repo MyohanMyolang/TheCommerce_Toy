@@ -23,11 +23,13 @@ public class UserService {
   public void updateUserInfo(String memberId, UpdateUserInfoRequest request) {
     Member member = memberService.getMemberById(memberId);
 
+    request.getNickname().ifPresent(memberService::isHasNickname);
+
     Member updatedMember = member.toBuilder()
       .nickname(request.getNickname().orElse(member.getNickname()))
-      .name(request.getNickname().orElse(member.getName()))
-      .phoneNumber(request.getNickname().orElse(member.getPhoneNumber()))
-      .email(request.getNickname().orElse(member.getEmail()))
+      .name(request.getName().orElse(member.getName()))
+      .phoneNumber(request.getPhoneNumber().orElse(member.getPhoneNumber()))
+      .email(request.getEmail().orElse(member.getEmail()))
       .password(request.getPassword().orElse(member.getPassword()))
       .build();
 
