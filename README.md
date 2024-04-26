@@ -22,6 +22,11 @@
 
 # 프로젝트 실행 방법
 
+- # **중요**
+- IntelliJ로 프로젝트 실행 시 아래와 같은 설정으로 진행하여야 한다.
+  ![image](https://github.com/MyohanMyolang/TheCommerce_Toy/assets/85920191/68d62da5-928c-4c5d-882f-171ecc7a991d)
+
+
 - resources 폴더에 .env 파일 생성 후 아래와 같은 방식을 통하여 DB 정보를 기입 후 실행.
 - 또는 환경 변수를 주는 방법으로 실행
 
