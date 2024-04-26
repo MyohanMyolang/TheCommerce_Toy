@@ -1,6 +1,7 @@
 package com.myolang.thecommerce_toy.api.auth.service;
 
 import com.myolang.thecommerce_toy.api.auth.dto.RegisterMemberRequest;
+import com.myolang.thecommerce_toy.domain.member.dto.MemberInfoResponse;
 import com.myolang.thecommerce_toy.domain.member.enums.MemberSortType;
 import com.myolang.thecommerce_toy.domain.member.exception.MemberException;
 import com.myolang.thecommerce_toy.domain.member.model.Member;
@@ -20,8 +21,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class AuthServiceTest {
 
   @Nested
-  @DisplayName("회원가입 중복 검사 테스트")
-  class DuplicateTest {
+  @DisplayName("회원가입 테스트")
+  class RegisterTest {
     private final PasswordEncoder passwordEncoder = new PasswordEncoder() {
       @Override
       public String encode(CharSequence rawPassword) {
@@ -111,6 +112,29 @@ class AuthServiceTest {
 
 
         assertThat(memberException.getErrorCode().getCode()).isEqualTo(20002L);
+      }
+    }
+
+    @Nested
+    @DisplayName("회원가입이 성공 한다면")
+    class SuccessRegister {
+      private SuccessRegister() {
+        isDuplicatedMemberId = false;
+        isDuplicatedNickname = false;
+      }
+
+      @Test
+      @DisplayName("요청 정보와 일치하는 데이터를 반환한다.")
+      void returnSameData() {
+        RegisterMemberRequest request = new RegisterMemberRequest
+          ("test", "test", "test", "test", "test", "test");
+        MemberInfoResponse response = authService.registerMember(request);
+
+        assertThat(response.getMemberId()).isEqualTo("test");
+        assertThat(response.getNickname()).isEqualTo("test");
+        assertThat(response.getPhoneNumber()).isEqualTo("test");
+        assertThat(response.getName()).isEqualTo("test");
+        assertThat(response.getEmail()).isEqualTo("test");
       }
     }
   }
