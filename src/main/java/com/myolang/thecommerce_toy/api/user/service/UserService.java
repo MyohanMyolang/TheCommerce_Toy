@@ -1,6 +1,7 @@
 package com.myolang.thecommerce_toy.api.user.service;
 
 import com.myolang.thecommerce_toy.api.user.dto.UpdateUserInfoRequest;
+import com.myolang.thecommerce_toy.domain.member.dto.MemberInfoResponse;
 import com.myolang.thecommerce_toy.domain.member.dto.MembersPagingResponse;
 import com.myolang.thecommerce_toy.domain.member.enums.MemberSortType;
 import com.myolang.thecommerce_toy.domain.member.model.Member;
@@ -24,7 +25,7 @@ public class UserService {
   private final PasswordEncoder passwordEncoder;
 
   @Transactional
-  public void updateUserInfo(String memberId, UpdateUserInfoRequest request) {
+  public MemberInfoResponse updateUserInfo(String memberId, UpdateUserInfoRequest request) {
     Member member = memberService.getMemberById(memberId);
 
     request.getNickname().ifPresent(memberService::isHasNickname);
@@ -46,7 +47,9 @@ public class UserService {
       .password(ifPresentPasswordThenEncode.apply(request.getPassword()))
       .build();
 
-    memberService.saveMember(updatedMember);
+    Member savedMember = memberService.saveMember(updatedMember);
+
+    return MemberInfoResponse.from(savedMember);
   }
 
   public MembersPagingResponse getMembers(Long page, Long pageSize, MemberSortType sortType) {

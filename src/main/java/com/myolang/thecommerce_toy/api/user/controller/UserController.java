@@ -2,6 +2,7 @@ package com.myolang.thecommerce_toy.api.user.controller;
 
 import com.myolang.thecommerce_toy.api.user.dto.UpdateUserInfoRequest;
 import com.myolang.thecommerce_toy.api.user.service.UserService;
+import com.myolang.thecommerce_toy.domain.member.dto.MemberInfoResponse;
 import com.myolang.thecommerce_toy.domain.member.dto.MembersPagingResponse;
 import com.myolang.thecommerce_toy.domain.member.enums.MemberSortType;
 import lombok.RequiredArgsConstructor;
@@ -28,11 +29,11 @@ public class UserController {
   }
 
   @PatchMapping("/{loginId}")
-  public ResponseEntity<String> updateMemberInfo(
+  public ResponseEntity<MemberInfoResponse> updateMemberInfo(
     @PathVariable String loginId,
     @RequestBody @Valid UpdateUserInfoRequest updateUserInfoRequest
   ) {
-    userService.updateUserInfo(loginId, updateUserInfoRequest);
-    return ResponseEntity.status(HttpStatus.OK).body("업데이트가 성공하였습니다.");
+    MemberInfoResponse memberInfoResponse = userService.updateUserInfo(loginId, updateUserInfoRequest);
+    return ResponseEntity.status(HttpStatus.OK).body(memberInfoResponse);
   }
 }
