@@ -2,6 +2,7 @@ package com.myolang.thecommerce_toy.api.auth.controller;
 
 import com.myolang.thecommerce_toy.api.auth.dto.RegisterMemberRequest;
 import com.myolang.thecommerce_toy.api.auth.service.AuthService;
+import com.myolang.thecommerce_toy.domain.member.dto.MemberInfoResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +22,9 @@ public class AuthController {
   private final AuthService authService;
 
   @PostMapping("/join")
-  public ResponseEntity<String> registerMember(
+  public ResponseEntity<MemberInfoResponse> registerMember(
     @RequestBody @Valid RegisterMemberRequest registerMemberRequest) {
-    authService.registerMember(registerMemberRequest);
-    return ResponseEntity.status(HttpStatus.CREATED).body("회원가입에 성공하였습니다.");
+    MemberInfoResponse memberInfoResponse = authService.registerMember(registerMemberRequest);
+    return ResponseEntity.status(HttpStatus.CREATED).body(memberInfoResponse);
   }
 }
