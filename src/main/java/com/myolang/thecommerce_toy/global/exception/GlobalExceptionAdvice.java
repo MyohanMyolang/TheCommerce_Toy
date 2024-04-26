@@ -40,6 +40,10 @@ public class GlobalExceptionAdvice {
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultMap);
   }
 
+  /**
+   * NOTE: 회원가입 도중 또는 회원 정보 수정 도중 동시성 문제로 인하여 Unique 값이 중복 등록 되었을 때 서버 장애를 표기하기 위하여 작성
+   *  또한 잘못된 코드 작성으로 DB의 설정과 맞지 않게 동장하는 케이스도 잡기 위하여.
+   */
   @ExceptionHandler(DataIntegrityViolationException.class)
   ResponseEntity<String> dataIntegrityViolationException(DataIntegrityViolationException e) {
     log.error(e.getMessage(), e);
