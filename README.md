@@ -22,9 +22,13 @@
 
 # 프로젝트 실행 방법
 
-- # **중요**
+- # **중요 사항**
 - IntelliJ로 프로젝트 실행 시 아래와 같은 설정으로 진행하여야 한다.
-  ![image](https://github.com/MyohanMyolang/TheCommerce_Toy/assets/85920191/68d62da5-928c-4c5d-882f-171ecc7a991d)
+
+- 설정 -> 빌드, 실행, 배포 -> 빌드 도구 -> Gradle
+- Settings -> Build, Execution, Deployment -> Build Tools -> Gradle
+  ![image](https://github.com/MyohanMyolang/TheCommerce_Toy/assets/85920191/a1cfc7c0-c0a0-4284-b8d4-329c4407923a)
+
 
 
 - resources 폴더에 .env 파일 생성 후 아래와 같은 방식을 통하여 DB 정보를 기입 후 실행.
